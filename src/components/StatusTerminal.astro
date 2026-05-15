@@ -1,0 +1,241 @@
+---
+interface StatusRow {
+  key: string;
+  value: string;
+  accent?: boolean;
+  numbers?: number[];
+}
+
+interface Props {
+  command?: string;
+  flag?: string;
+  rows?: StatusRow[];
+  time?: string;
+}
+
+const {
+  command = 'commsdock status',
+  flag = '--verbose',
+  time = '14:32 AEST',
+  rows = [
+    { key: 'practitioner', value: 'solo · since 2014', numbers: [2014] },
+    { key: 'scope', value: 'telecom × cloud × ai' },
+    { key: 'deployments', value: '47 networks · 6 countries', numbers: [47, 6] },
+    { key: 'availability', value: 'online · accepting Q2/Q3', accent: true },
+    { key: 'latency', value: 'replies within 1 business day' },
+  ],
+} = Astro.props;
+
+const renderValue = (row: StatusRow) => {
+  if (!row.numbers || row.numbers.length === 0) return row.value;
+  let html = row.value;
+  for (const num of row.numbers) {
+    html = html.replace(new RegExp(`\\b${num}\\b`), `<span class="num">${num}</span>`);
+  }
+  return html;
+};
+---
+
+<div class="term-wrap">
+  <span class="term-label">Live status</span>
+  <div class="terminal" role="presentation">
+    <div class="terminal-bar">
+      <div class="terminal-lights" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <span class="terminal-tab">commsdock ~ status</span>
+      <span class="terminal-time">{time}</span>
+    </div>
+    <div class="terminal-body">
+      <div class="term-line">
+        <span class="term-prompt">$</span>
+        <span class="term-cmd">{command} <span class="flag">{flag}</span></span>
+      </div>
+      {rows.map((row) => (
+        <div class="term-line">
+          <span class="term-key">{row.key}</span>
+          {row.accent ? (
+            <span class="term-val term-accent">{row.value}</span>
+          ) : (
+            <span class="term-val" set:html={renderValue(row)} />
+          )}
+        </div>
+      ))}
+      <div class="term-line">
+        <span class="term-prompt">$</span>
+        <span class="term-cursor" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .term-wrap {
+    position: relative;
+    padding-top: 28px;
+  }
+
+  .term-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .term-label::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--border-strong);
+  }
+
+  .terminal {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.008));
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.5),
+      0 0 0 1px var(--border) inset,
+      0 0 60px var(--accent-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    position: relative;
+  }
+  .terminal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-lg);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 30%, transparent 70%, var(--accent-soft));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .terminal-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 11px 16px;
+    background: rgba(0, 0, 0, 0.32);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-lights {
+    display: flex;
+    gap: 7px;
+  }
+  .terminal-lights span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .terminal-tab {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .terminal-time {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .terminal-body {
+    padding: 22px 24px 26px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text-2);
+  }
+
+  .term-line {
+    display: flex;
+    align-items: baseline;
+    white-space: nowrap;
+  }
+
+  .term-prompt {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 500;
+  }
+
+  .term-cmd {
+    color: var(--text);
+  }
+  .term-cmd :global(.flag) {
+    color: var(--text-dim);
+  }
+
+  .term-key {
+    display: inline-block;
+    min-width: 130px;
+    color: var(--text-muted);
+  }
+  .term-key::before {
+    content: '→';
+    color: var(--text-muted);
+    opacity: 0.55;
+    margin-right: 8px;
+  }
+
+  .term-val {
+    color: var(--text);
+  }
+  .term-val :global(.num) {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .term-val.term-accent {
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .term-val.term-accent::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow);
+    flex-shrink: 0;
+  }
+
+  .term-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink 1.05s steps(2) infinite;
+    box-shadow: 0 0 6px var(--accent-glow);
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+</style>

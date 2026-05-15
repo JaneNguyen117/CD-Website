@@ -1,0 +1,65 @@
+/* ============================================================
+ * CommsDock — Design Tokens
+ * Single source of truth for color, type, spacing, motion.
+ * Edit here, every component updates.
+ * ============================================================ */
+
+:root {
+  /* ---------- Surface palette ---------- */
+  --bg: #0a0a0f;
+  --bg-elev: #0d0d14;
+  --surface: rgba(255, 255, 255, 0.025);
+  --surface-strong: rgba(255, 255, 255, 0.04);
+
+  /* ---------- Borders ---------- */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-bright: rgba(255, 255, 255, 0.22);
+
+  /* ---------- Text scale ---------- */
+  --text: #ececf1;
+  --text-2: #b8b8c2;
+  --text-dim: #7a7a86;
+  --text-muted: #555560;
+
+  /* ---------- Accent (electric cyan) ---------- */
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.14);
+  --accent-glow: rgba(34, 211, 238, 0.32);
+  --accent-text: #06181c;
+
+  /* ---------- Ambient atmosphere (violet/indigo aurora) ---------- */
+  --aurora-violet: rgba(99, 102, 241, 0.24);
+  --aurora-purple: rgba(139, 92, 246, 0.20);
+  --aurora-indigo: rgba(79, 70, 229, 0.16);
+
+  /* ---------- Type stacks ---------- */
+  --font-display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---------- Layout ---------- */
+  --container-max: 1320px;
+  --container-pad-x: 56px;
+  --container-pad-x-sm: 32px;
+  --header-h: 72px;
+
+  /* ---------- Radii ---------- */
+  --r-sm: 5px;
+  --r-md: 7px;
+  --r-lg: 10px;
+  --r-xl: 14px;
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 0.15s;
+  --dur-med: 0.22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

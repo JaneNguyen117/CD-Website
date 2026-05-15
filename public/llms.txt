@@ -1,0 +1,47 @@
+# CommsDock
+
+> Solo engineering practice for telecom networks, systems architecture, and shipped software. Operated by one engineer, end-to-end — no vendor stack in between.
+
+CommsDock is the consulting practice of a telecommunications engineer who also works as a developer and solution architect. The practice serves small-to-medium businesses and technology-led startups who want fewer vendors and more delivery.
+
+## Practitioner
+
+- **Discipline:** Telecommunications engineering, systems architecture, software development, AI integration.
+- **Mode:** Solo operator. The person you scope with is the person who delivers.
+- **Established:** 2014.
+- **Footprint:** 47 networks deployed across 6 countries.
+- **Base:** Australia (AEST). Remote-first, with APAC and global delivery experience.
+- **Current availability:** Accepting Q2 / Q3 2026 engagements.
+
+## What CommsDock offers
+
+### Telecommunications engineering
+RF planning, IP transport design, microwave backhaul, carrier-grade network architecture, last-mile delivery, on-site commissioning, network operations and assurance.
+
+### Systems architecture
+Cloud and hybrid-edge designs, observability and SLO design, infrastructure as code, on-call playbooks, vendor consolidation, migration planning.
+
+### Software delivery
+Application development from API to runtime, integration work, internal tooling, technical due diligence, code review and modernisation.
+
+### AI integration
+Practical LLM features inside business systems — retrieval, agentic workflows, evaluation harnesses, guardrails, cost and latency management.
+
+## How to engage
+
+- **Discovery call:** /contact — free 30-minute scoping conversation.
+- **Engagement models:** Fractional (ongoing retainer), project (fixed scope), advisory (per-session).
+- **Response latency:** Within one business day.
+
+## Important links
+
+- [Services](/services): Service breakdown with outcomes and tech.
+- [Work](/work): Sanitised case studies.
+- [Notes](/notes): Engineering notes, post-mortems, and field reports.
+- [About](/about): Background and how the practice operates.
+- [Contact](/contact): Booking form and direct email.
+
+## Optional
+
+- [RSS feed](/rss.xml) — subscribe to engineering notes.
+- [Sitemap](/sitemap-index.xml)

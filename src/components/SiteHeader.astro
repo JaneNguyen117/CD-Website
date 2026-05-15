@@ -1,0 +1,151 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/services', label: 'Services' },
+  { href: '/work', label: 'Work' },
+  { href: '/notes', label: 'Notes' },
+  { href: '/about', label: 'About' },
+];
+
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
+---
+
+<header class="site-header" aria-label="Site header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="CommsDock — home">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="22" width="26" height="6" rx="1" fill="currentColor" opacity="0.85" />
+        <rect x="7" y="14" width="18" height="6" rx="1" fill="currentColor" opacity="0.55" />
+        <rect x="11" y="6" width="10" height="6" rx="1" fill="var(--accent)" />
+      </svg>
+      <span class="logo-text">CommsDock</span>
+    </a>
+
+    <nav class="topnav" aria-label="Primary">
+      {nav.map((item) => (
+        <a href={item.href} class:list={[{ active: isActive(item.href) }]}>{item.label}</a>
+      ))}
+    </nav>
+
+    <a href="/contact" class="topbar-cta">
+      Book a consult
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    background: rgba(10, 10, 15, 0.62);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+
+  .logo-mark {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--text);
+  }
+
+  .topnav {
+    display: flex;
+    gap: 32px;
+    justify-self: center;
+    font-size: 14px;
+    color: var(--text-2);
+    font-weight: 450;
+  }
+  .topnav a {
+    transition: color var(--dur-fast) var(--ease);
+    position: relative;
+    padding: 4px 0;
+  }
+  .topnav a:hover {
+    color: var(--text);
+  }
+  .topnav a.active {
+    color: var(--text);
+  }
+  .topnav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .topbar-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-md);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    transition: all var(--dur-fast) var(--ease);
+    white-space: nowrap;
+  }
+  .topbar-cta:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-bright);
+  }
+  .topbar-cta .arrow {
+    color: var(--accent);
+    transition: transform var(--dur-fast) var(--ease);
+  }
+  .topbar-cta:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 1100px) {
+    .header-inner {
+      grid-template-columns: auto auto;
+      gap: 16px;
+    }
+    .topnav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .topbar-cta {
+      padding: 8px 12px;
+      font-size: 12.5px;
+    }
+    .logo-text {
+      display: none;
+    }
+  }
+</style>
