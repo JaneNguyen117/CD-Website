@@ -1,0 +1,194 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { describe, test } from 'node:test';
+
+const distDir = join(process.cwd(), 'dist');
+const siteOrigin = 'https://commsdock.com';
+
+const primaryRoutes = ['/', '/services', '/work', '/notes', '/about', '/contact'];
+const noteRoute = '/notes/field-to-api-telecom-software';
+const allRoutes = [...primaryRoutes, noteRoute];
+const knownStaticPaths = new Set([
+  '/favicon.svg',
+  '/og-default.svg',
+  '/robots.txt',
+  '/llms.txt',
+  '/rss.xml',
+  '/sitemap-index.xml',
+  '/sitemap-0.xml',
+]);
+
+function fileForRoute(route) {
+  return route === '/'
+    ? join(distDir, 'index.html')
+    : join(distDir, route.slice(1), 'index.html');
+}
+
+function readDistFile(...segments) {
+  return readFileSync(join(distDir, ...segments), 'utf8');
+}
+
+function normalisePath(pathname) {
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    return pathname.slice(0, -1);
+  }
+
+  return pathname;
+}
+
+function getAttribute(tag, name) {
+  const match = tag.match(new RegExp(`\\s${name}\\s*=\\s*(['"])(.*?)\\1`, 'i'));
+  return match?.[2];
+}
+
+function getInternalHrefs(html) {
+  const hrefs = [];
+  const linkPattern = /<a\b[^>]*\shref\s*=\s*(['"])(.*?)\1/gi;
+  let match;
+
+  while ((match = linkPattern.exec(html)) !== null) {
+    hrefs.push(match[2]);
+  }
+
+  return hrefs;
+}
+
+function getJsonLdBlocks(html) {
+  const blocks = [];
+  const scriptPattern =
+    /<script\b(?=[^>]*\btype\s*=\s*(['"])application\/ld\+json\1)[^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+
+  while ((match = scriptPattern.exec(html)) !== null) {
+    blocks.push(match[2].trim());
+  }
+
+  return blocks;
+}
+
+function getMetaContent(html, attributeName, attributeValue) {
+  const metaTags = html.match(/<meta\b[^>]*>/gi) ?? [];
+
+  for (const tag of metaTags) {
+    if (getAttribute(tag, attributeName) === attributeValue) {
+      return getAttribute(tag, 'content');
+    }
+  }
+
+  return undefined;
+}
+
+function assertKnownInternalHref(href, sourceRoute) {
+  if (
+    href === '' ||
+    href.startsWith('#') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:')
+  ) {
+    return;
+  }
+
+  let url;
+  try {
+    url = new URL(href, siteOrigin);
+  } catch {
+    assert.fail(`${sourceRoute} has an unparsable href: ${href}`);
+  }
+
+  if (url.origin !== siteOrigin) {
+    return;
+  }
+
+  const pathname = normalisePath(url.pathname);
+  const isKnownRoute = allRoutes.includes(pathname);
+  const isKnownAsset =
+    knownStaticPaths.has(pathname) ||
+    pathname.startsWith('/_astro/');
+
+  assert.ok(
+    isKnownRoute || isKnownAsset,
+    `${sourceRoute} links to unknown internal target: ${href}`,
+  );
+}
+
+describe('AI discoverability output', () => {
+  test('primary pages and note detail page exist in dist', () => {
+    for (const route of allRoutes) {
+      assert.ok(existsSync(fileForRoute(route)), `${route} should emit an index.html file`);
+    }
+  });
+
+  test('primary page internal links resolve to shipped routes or assets', () => {
+    for (const route of primaryRoutes) {
+      const html = readFileSync(fileForRoute(route), 'utf8');
+      const hrefs = getInternalHrefs(html);
+
+      assert.ok(hrefs.length > 0, `${route} should include links`);
+
+      for (const href of hrefs) {
+        assertKnownInternalHref(href, route);
+      }
+    }
+  });
+
+  test('primary pages include parseable JSON-LD with context and type', () => {
+    for (const route of primaryRoutes) {
+      const html = readFileSync(fileForRoute(route), 'utf8');
+      const jsonLdBlocks = getJsonLdBlocks(html);
+
+      assert.ok(jsonLdBlocks.length > 0, `${route} should include JSON-LD`);
+
+      for (const block of jsonLdBlocks) {
+        const data = JSON.parse(block);
+
+        assert.ok(data['@context'], `${route} JSON-LD should include @context`);
+        assert.ok(data['@type'], `${route} JSON-LD should include @type`);
+      }
+    }
+  });
+
+  test('home page exposes OG and Twitter images for the default social image', () => {
+    const html = readFileSync(fileForRoute('/'), 'utf8');
+    const expectedImage = `${siteOrigin}/og-default.svg`;
+
+    assert.equal(getMetaContent(html, 'property', 'og:image'), expectedImage);
+    assert.equal(getMetaContent(html, 'name', 'twitter:image'), expectedImage);
+    assert.ok(existsSync(join(distDir, 'og-default.svg')), 'og-default.svg should exist in dist');
+  });
+
+  test('robots.txt permits major AI crawlers and advertises the sitemap', () => {
+    const robots = readDistFile('robots.txt');
+
+    assert.match(robots, /User-agent:\s*GPTBot/i);
+    assert.match(robots, /User-agent:\s*ClaudeBot/i);
+    assert.match(robots, /Sitemap:\s*https:\/\/commsdock\.com\/sitemap-index\.xml/i);
+  });
+
+  test('llms.txt includes primary machine-readable site links', () => {
+    const llms = readDistFile('llms.txt');
+
+    for (const route of primaryRoutes.filter((route) => route !== '/')) {
+      assert.match(llms, new RegExp(`\\(${route}\\)|\\s${route}\\b`), `llms.txt should include ${route}`);
+    }
+  });
+
+  test('sitemap includes primary pages and the note detail page', () => {
+    const sitemapIndex = readDistFile('sitemap-index.xml');
+    const sitemap = readDistFile('sitemap-0.xml');
+
+    assert.match(sitemapIndex, /https:\/\/commsdock\.com\/sitemap-0\.xml/);
+
+    for (const route of allRoutes) {
+      const url = route === '/' ? siteOrigin : `${siteOrigin}${route}`;
+      assert.match(sitemap, new RegExp(`<loc>${url}\\/?<\\/loc>`), `sitemap should include ${url}`);
+    }
+  });
+
+  test('RSS feed exists and includes the notes channel and note slug', () => {
+    const rss = readDistFile('rss.xml');
+
+    assert.match(rss, /CommsDock Notes/);
+    assert.match(rss, /field-to-api-telecom-software/);
+  });
+});

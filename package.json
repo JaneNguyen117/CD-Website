@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:ai": "npm run build && node --test tests/ai-discoverability.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check"
