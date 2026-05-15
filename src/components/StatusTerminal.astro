@@ -74,6 +74,8 @@ const renderValue = (row: StatusRow) => {
   .term-wrap {
     position: relative;
     padding-top: 28px;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .term-label {
@@ -108,6 +110,7 @@ const renderValue = (row: StatusRow) => {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     position: relative;
+    max-width: 100%;
   }
   .terminal::before {
     content: '';
@@ -164,22 +167,26 @@ const renderValue = (row: StatusRow) => {
     font-size: 13px;
     line-height: 1.9;
     color: var(--text-2);
+    overflow-x: hidden;
   }
 
   .term-line {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 10px;
     align-items: baseline;
-    white-space: nowrap;
+    min-width: 0;
   }
 
   .term-prompt {
     color: var(--accent);
-    margin-right: 10px;
     font-weight: 500;
   }
 
   .term-cmd {
     color: var(--text);
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .term-cmd :global(.flag) {
     color: var(--text-dim);
@@ -199,6 +206,8 @@ const renderValue = (row: StatusRow) => {
 
   .term-val {
     color: var(--text);
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .term-val :global(.num) {
     color: var(--accent);
@@ -237,6 +246,48 @@ const renderValue = (row: StatusRow) => {
     }
     51%, 100% {
       opacity: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .terminal-bar {
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      padding: 10px 12px;
+    }
+    .terminal-time {
+      display: none;
+    }
+    .terminal-tab {
+      overflow: hidden;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .terminal-body {
+      font-size: 11.5px;
+      line-height: 1.75;
+      padding: 18px 16px 20px;
+    }
+    .term-line {
+      grid-template-columns: minmax(74px, auto) minmax(0, 1fr);
+      white-space: normal;
+    }
+    .term-key {
+      min-width: 0;
+    }
+    .term-key::before {
+      margin-right: 6px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .terminal-body {
+      font-size: 10.75px;
+      padding-inline: 14px;
+    }
+    .term-line {
+      grid-template-columns: minmax(68px, auto) minmax(0, 1fr);
     }
   }
 </style>

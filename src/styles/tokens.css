@@ -63,3 +63,16 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 640px) {
+  :root {
+    --container-pad-x-sm: 24px;
+    --header-h: 64px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --container-pad-x-sm: 20px;
+  }
+}

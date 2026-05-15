@@ -167,6 +167,7 @@ const stats = [
   /* ---------- Hero left ---------- */
   .hero-left {
     position: relative;
+    min-width: 0;
   }
 
   .eyebrow {
@@ -298,6 +299,8 @@ const stats = [
   /* ---------- Hero right ---------- */
   .hero-right {
     position: relative;
+    min-width: 0;
+    max-width: 100%;
   }
 
   /* ---------- Stats footer ---------- */
@@ -363,14 +366,47 @@ const stats = [
   }
 
   @media (max-width: 640px) {
+    .hero-grid {
+      gap: 42px;
+      padding-block: 44px 32px;
+    }
+    .eyebrow {
+      font-size: 10px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+      max-width: 28ch;
+    }
     .headline {
-      font-size: 44px;
+      font-size: clamp(40px, 12vw, 48px);
+      letter-spacing: -0.035em;
     }
     .subhead {
       font-size: 16px;
+      max-width: 100%;
+    }
+    .cta-row {
+      align-items: stretch;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .btn {
+      justify-content: center;
+      min-height: 50px;
+    }
+    .trust-row {
+      align-items: flex-start;
+      font-size: 10.5px;
+      line-height: 1.5;
+      white-space: normal;
     }
     .hero-stats {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .headline {
+      font-size: 38px;
     }
   }
 </style>

@@ -40,4 +40,23 @@ const { label, title, summary } = Astro.props;
     font-size: 18px;
     line-height: 1.6;
   }
+
+  @media (max-width: 640px) {
+    .page-intro {
+      padding-block: 64px 40px;
+    }
+    h1 {
+      font-size: clamp(38px, 11vw, 48px);
+      letter-spacing: -0.03em;
+    }
+    p:last-child {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    h1 {
+      font-size: 36px;
+    }
+  }
 </style>
