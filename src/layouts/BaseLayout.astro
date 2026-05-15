@@ -6,24 +6,32 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { personSchema, professionalServiceSchema, websiteSchema } from '../utils/schema';
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonical?: string;
   ogImage?: string;
   noIndex?: boolean;
   schema?: Record<string, unknown>[];
+  frontmatter?: {
+    title?: string;
+    description?: string;
+  };
 }
 
 const {
-  title,
-  description,
   canonical,
   ogImage = '/og-default.svg',
   noIndex = false,
   schema = [],
+  frontmatter = {},
 } = Astro.props;
 
 const siteName = 'CommsDock';
+const title = Astro.props.title ?? frontmatter.title ?? siteName;
+const description =
+  Astro.props.description ??
+  frontmatter.description ??
+  'Telecom-first engineering practice for network architecture, field-to-cloud systems, and the software needed to operate them.';
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://commsdock.com';
 const fullTitle = title === siteName ? `${siteName} - Telecom-first engineering practice` : `${title} - ${siteName}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
