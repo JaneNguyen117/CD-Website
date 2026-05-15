@@ -3,9 +3,9 @@ export const site = {
   url: 'https://commsdock.com',
   email: 'hello@commsdock.com',
   description:
-    'Telecom-first engineering practice for network architecture, field-to-cloud systems, and the software needed to operate them.',
+    'Voice telecom engineering practice for PBX, contact centre, collaboration platforms, and voice AI systems.',
   positioning:
-    'Telecommunications specialist who designs networks, architects systems, and builds the software that makes delivery and operations simpler.',
+    'Voice telecommunications specialist who designs, migrates, integrates, and automates business calling platforms.',
   availability: 'Accepting Q2 / Q3 2026 engagements',
   base: 'Australia',
   timezone: 'Australia/Sydney',
@@ -21,59 +21,61 @@ export const navItems = [
 
 export const proofPoints = [
   { label: 'Established', value: '2014' },
-  { label: 'Networks deployed', value: '47' },
-  { label: 'Countries', value: '6' },
+  { label: 'Voice platforms', value: 'PBX, CCaaS, UC' },
+  { label: 'AI stack', value: 'Voice-native' },
   { label: 'Mode', value: 'Solo operator' },
 ] as const;
 
 export const services = [
   {
-    slug: 'telecommunications-engineering',
-    title: 'Telecommunications engineering',
+    slug: 'voice-telecommunications-engineering',
+    title: 'Voice telecommunications engineering',
     summary:
-      'RF, transport, backhaul, last-mile, commissioning, and operational assurance for networks that need practical delivery discipline.',
+      'PBX, SIP, call routing, collaboration, and contact-centre engineering for businesses that depend on reliable voice.',
     outcomes: [
-      'Network designs that can be built, operated, and handed over',
-      'Cleaner vendor coordination and technical decision records',
-      'Field-aware engineering that accounts for constraints before rollout',
+      'Cleaner call flows, routing logic, and handover documentation',
+      'Voice platforms configured around business operations instead of vendor defaults',
+      'Reduced ambiguity across carriers, trunks, endpoints, queues, and users',
     ],
     capabilities: [
-      'RF planning',
-      'IP transport design',
-      'Microwave backhaul',
-      'Carrier-grade network architecture',
-      'Commissioning support',
-      'Operations and assurance',
+      'NEC PBX',
+      'Panasonic PBX',
+      'Avaya IP Office',
+      'Avaya Contact Center',
+      'Webex Calling',
+      'BroadWorks call centre',
+      '3CX',
+      'Yeastar Cloud PBX',
     ],
   },
   {
-    slug: 'network-systems-architecture',
-    title: 'Network and systems architecture',
+    slug: 'voice-systems-architecture',
+    title: 'Voice systems architecture',
     summary:
-      'Architecture work that connects telecom infrastructure with cloud, edge, observability, and business systems.',
+      'Architecture work for migrations, hybrid voice estates, SIP integrations, call centre operations, and collaboration platforms.',
     outcomes: [
       'Clear target-state architecture and migration path',
-      'Resilient edge, cloud, and observability patterns',
-      'Decision support for build, buy, and vendor consolidation',
+      'Practical coexistence plans across legacy PBX, cloud PBX, UC, and call centre platforms',
+      'Decision support for carrier, platform, endpoint, and vendor consolidation',
     ],
     capabilities: [
-      'Hybrid-edge architecture',
-      'Cloud migration planning',
-      'Observability and SLO design',
-      'Infrastructure as code direction',
-      'Technical due diligence',
+      'Cloud PBX migration',
+      'SIP trunking and call flow design',
+      'IVR and queue architecture',
+      'Contact centre integration',
+      'Numbering and dial-plan design',
       'Operational playbooks',
     ],
   },
   {
-    slug: 'software-for-network-operations',
-    title: 'Software for network operations',
+    slug: 'software-for-voice-operations',
+    title: 'Software for voice operations',
     summary:
-      'Custom software, APIs, dashboards, and integrations for teams that need engineering workflows to move faster.',
+      'Custom software, APIs, dashboards, and integrations for teams that need voice operations to move faster.',
     outcomes: [
-      'Internal tools that reduce spreadsheet and ticketing drag',
-      'APIs and integrations that connect field, network, and business data',
-      'Maintainable software delivered by someone who understands the network context',
+      'Internal tools that reduce manual provisioning, reporting, and ticketing drag',
+      'Integrations that connect voice platforms with CRM, service desk, and business systems',
+      'Maintainable software delivered by someone who understands voice telecom context',
     ],
     capabilities: [
       'Application development',
@@ -81,26 +83,26 @@ export const services = [
       'System integration',
       'Automation tooling',
       'Code review and modernisation',
-      'Operational dashboards',
+      'Voice analytics dashboards',
     ],
   },
   {
-    slug: 'ai-assisted-engineering',
-    title: 'AI-assisted engineering workflows',
+    slug: 'voice-ai-systems',
+    title: 'Voice AI systems',
     summary:
-      'Practical LLM features for engineering teams: retrieval, evaluation, workflow assistance, and guardrails where they make operational sense.',
+      'A voice-native AI stack for call handling, workflow automation, retrieval, evaluation, and safe integration into business systems.',
     outcomes: [
-      'AI features tied to measurable engineering workflows',
-      'Safer retrieval and agentic patterns for internal knowledge',
-      'Cost, latency, and evaluation discipline before production rollout',
+      'Voice AI workflows tied to measurable caller and operator outcomes',
+      'Safer retrieval and automation patterns for customer and internal knowledge',
+      'Cost, latency, quality, and evaluation discipline before production rollout',
     ],
     capabilities: [
+      'Voice AI stack design',
+      'Call workflow automation',
+      'Speech-to-text and text-to-speech integration',
       'Retrieval systems',
-      'Agentic workflow design',
       'Evaluation harnesses',
-      'Guardrails',
-      'Cost and latency management',
-      'Knowledge-base integration',
+      'Guardrails and escalation paths',
     ],
   },
 ] as const;
@@ -108,7 +110,7 @@ export const services = [
 export const engagementModels = [
   {
     title: 'Discovery',
-    summary: 'A focused scoping conversation to understand the network, system, delivery risk, and business goal.',
+    summary: 'A focused scoping conversation to understand the voice estate, call flows, platform risk, and business goal.',
   },
   {
     title: 'Project',
@@ -116,6 +118,6 @@ export const engagementModels = [
   },
   {
     title: 'Fractional',
-    summary: 'Ongoing telecom, architecture, and software support for teams that need senior engineering capacity.',
+    summary: 'Ongoing voice telecom, architecture, and software support for teams that need senior engineering capacity.',
   },
 ] as const;

@@ -1,43 +1,43 @@
 # CommsDock
 
-> Telecom-first engineering practice for network architecture, field-to-cloud systems, and the software needed to operate them.
+> Voice telecom engineering practice for PBX, contact centre, collaboration platforms, and voice AI systems.
 
-CommsDock is the consulting practice of a telecommunications engineer who also works as a developer and solution architect. The practice helps teams design, modernise, and operate telecommunications systems, then builds the software, integrations, and AI-assisted workflows needed to reduce delivery and operations friction.
+CommsDock is the consulting practice of a voice telecommunications engineer who also works as a developer and solution architect. The practice helps teams design, modernise, and operate PBX, contact centre, and collaboration systems, then builds the software, integrations, and voice AI workflows needed to reduce delivery and operations friction.
 
 ## Practitioner
 
-- **Discipline:** Telecommunications engineering, systems architecture, software development, AI integration.
+- **Discipline:** Voice telecommunications engineering, PBX and contact centre architecture, software development, voice AI integration.
 - **Mode:** Solo operator. The person you scope with is the person who delivers.
 - **Established:** 2014.
-- **Footprint:** 47 networks deployed across 6 countries.
+- **Specialty platforms:** NEC PBX, Panasonic PBX, Avaya IP Office, Avaya Contact Center, Webex, BroadWorks call centre, 3CX, Yeastar Cloud PBX.
 - **Base:** Australia (AEST). Remote-first, with APAC and global delivery experience.
 - **Current availability:** Accepting Q2 / Q3 2026 engagements.
 
 ## What CommsDock offers
 
-### Telecommunications engineering
-RF planning, IP transport design, microwave backhaul, carrier-grade network architecture, last-mile delivery, on-site commissioning, network operations and assurance.
+### Voice telecommunications engineering
+PBX, SIP, call routing, collaboration, and contact-centre engineering for businesses that depend on reliable voice.
 
-### Systems architecture
-Cloud and hybrid-edge designs, observability and SLO design, infrastructure as code, on-call playbooks, vendor consolidation, migration planning.
+### Voice systems architecture
+Cloud PBX migration, SIP trunking, call-flow design, IVR and queue architecture, contact centre integration, numbering, dial plans, vendor consolidation, and operational playbooks.
 
-### Software delivery
-Application development from API to runtime, integration work, internal tooling, technical due diligence, code review and modernisation.
+### Software for voice operations
+Application development, API design, integration work, automation tooling, voice analytics dashboards, technical due diligence, code review, and modernisation.
 
-### AI integration
-Practical LLM features inside business systems: retrieval, agentic workflows, evaluation harnesses, guardrails, cost and latency management.
+### Voice AI systems
+Voice-native AI workflows for call handling, retrieval, workflow automation, evaluation harnesses, guardrails, escalation paths, cost management, and latency management.
 
 ## How to engage
 
-- **Contact:** /contact - send the network context, constraints, and timeline; response within one business day.
+- **Contact:** /contact - send the platform, call-flow problem, constraints, and timeline; response within one business day.
 - **Engagement models:** Discovery (focused scoping), Project (fixed scope), Fractional (ongoing senior engineering capacity).
 - **Response latency:** Within one business day.
 
 ## Important links
 
-- [Services](/services): Telecommunications engineering, network systems architecture, software for network operations, and AI-assisted engineering workflows.
-- [Work](/work): Sanitised proof themes and delivery patterns.
-- [Notes](/notes): Engineering notes, field reports, and architecture writing.
+- [Services](/services): Voice telecommunications engineering, voice systems architecture, software for voice operations, and voice AI systems.
+- [Work](/work): Sanitised voice telecom, contact centre, and voice AI proof themes.
+- [Notes](/notes): Engineering notes on PBX, contact centre, voice operations software, and voice AI.
 - [About](/about): Background and how the practice operates.
 - [Contact](/contact): Engagement options and direct email.
 

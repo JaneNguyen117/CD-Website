@@ -18,10 +18,10 @@ const {
   flag = '--verbose',
   time = '14:32 AEST',
   rows = [
-    { key: 'practitioner', value: 'solo · since 2014', numbers: [2014] },
-    { key: 'scope', value: 'telecom × cloud × ai' },
-    { key: 'deployments', value: '47 networks · 6 countries', numbers: [47, 6] },
-    { key: 'availability', value: 'online · accepting Q2/Q3', accent: true },
+    { key: 'practitioner', value: 'solo - since 2014', numbers: [2014] },
+    { key: 'scope', value: 'voice - pbx - contact centre - ai' },
+    { key: 'platforms', value: 'NEC - Panasonic - Avaya - Webex' },
+    { key: 'availability', value: 'online - accepting Q2/Q3', accent: true },
     { key: 'latency', value: 'replies within 1 business day' },
   ],
 } = Astro.props;
@@ -190,7 +190,7 @@ const renderValue = (row: StatusRow) => {
     color: var(--text-muted);
   }
   .term-key::before {
-    content: '→';
+    content: '->';
     color: var(--text-muted);
     opacity: 0.55;
     margin-right: 8px;

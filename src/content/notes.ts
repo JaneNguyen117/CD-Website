@@ -1,9 +1,9 @@
 export const notes = [
   {
     href: '/notes/field-to-api-telecom-software',
-    title: 'Field to API: why telecom software starts with the network reality',
+    title: 'From PBX to API: why voice AI starts with call-flow reality',
     description:
-      'Telecom software works better when it starts from field constraints, network topology, and operational handover.',
+      'Voice AI and voice operations software work better when they start from call flows, platform constraints, and operational handover.',
     date: '2026-05-15',
   },
 ] as const;

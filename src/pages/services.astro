@@ -7,7 +7,7 @@ import { services } from '../content/site';
 import { serviceSchema, webPageSchema } from '../utils/schema';
 
 const description =
-  'Telecom-first services from CommsDock: telecommunications engineering, network systems architecture, software for network operations, and practical AI workflows.';
+  'Voice telecom services from CommsDock: PBX engineering, contact centre architecture, voice operations software, and voice AI systems.';
 ---
 
 <BaseLayout
@@ -17,8 +17,8 @@ const description =
 >
   <PageIntro
     label="Services"
-    title="Telecom engineering first. Software where the network needs it."
-    summary="CommsDock helps teams design, modernise, and operate telecommunications systems, then builds the integrations and tools that remove delivery friction."
+    title="Voice telecom first. AI where the call flow needs it."
+    summary="CommsDock helps teams design, modernise, and operate PBX, contact centre, and collaboration systems, then builds the integrations and tools that remove voice operations friction."
   />
   <section class="container services-list">
     {services.map((service) => <ServicePanel {...service} />)}

@@ -4,14 +4,14 @@ import PageIntro from '../../components/PageIntro.astro';
 import { notes } from '../../content/notes';
 import { webPageSchema } from '../../utils/schema';
 
-const description = 'Engineering notes from CommsDock on telecom networks, architecture, operational software, and practical AI workflows.';
+const description = 'Engineering notes from CommsDock on voice telecom, PBX and contact centre architecture, operational software, and voice AI workflows.';
 ---
 
 <BaseLayout title="Notes" description={description} schema={[webPageSchema('/notes', 'CommsDock Notes', description)]}>
   <PageIntro
     label="Notes"
-    title="Field notes on networks, architecture, and software."
-    summary="Short technical notes from the intersection of telecom delivery, systems architecture, and the software that keeps operations moving."
+    title="Field notes on voice systems, call flows, and software."
+    summary="Short technical notes from the intersection of PBX delivery, contact centre operations, voice AI, and the software that keeps communications moving."
   />
   <section class="container notes-list">
     {notes.map((note) => (

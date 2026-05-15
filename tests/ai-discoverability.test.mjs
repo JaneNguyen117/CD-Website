@@ -203,6 +203,21 @@ describe('AI discoverability output', () => {
     }
   });
 
+  test('site positioning stays focused on voice telecom and voice AI', () => {
+    const combined = [
+      ...htmlRoutes.map((route) => readFileSync(fileForRoute(route), 'utf8')),
+      readDistFile('llms.txt'),
+    ].join('\n');
+
+    for (const expected of ['PBX', 'Avaya IP Office', 'Avaya Contact Center', 'Webex', 'BroadWorks', '3CX', 'Yeastar Cloud PBX', 'Voice AI']) {
+      assert.match(combined, new RegExp(expected.replaceAll(' ', '\\s+'), 'i'), `site output should mention ${expected}`);
+    }
+
+    for (const obsolete of ['RF planning', 'microwave backhaul', 'antenna', 'last-mile', 'carrier-grade network']) {
+      assert.doesNotMatch(combined, new RegExp(obsolete, 'i'), `site output should not mention ${obsolete}`);
+    }
+  });
+
   test('sitemap includes primary pages and the note detail page', () => {
     const sitemapIndex = readDistFile('sitemap-index.xml');
     const sitemap = readDistFile('sitemap-0.xml');
