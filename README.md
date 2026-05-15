@@ -1,7 +1,7 @@
 # CommsDock
 
 Solo engineering practice marketing site.
-Stack: Astro 5 + MDX, vanilla CSS with design tokens, AI-discoverable by design.
+Stack: Astro 6 + MDX, vanilla CSS with design tokens, AI-discoverable by design.
 
 ## Run locally
 
