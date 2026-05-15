@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+  <circle cx="210" cy="130" r="260" fill="#6366f1" opacity="0.22"/>
+  <circle cx="940" cy="140" r="300" fill="#8b5cf6" opacity="0.18"/>
+  <circle cx="720" cy="590" r="260" fill="#22d3ee" opacity="0.16"/>
+  <g opacity="0.16" stroke="#ffffff">
+    <path d="M0 96h1200M0 192h1200M0 288h1200M0 384h1200M0 480h1200M0 576h1200"/>
+    <path d="M96 0v630M192 0v630M288 0v630M384 0v630M480 0v630M576 0v630M672 0v630M768 0v630M864 0v630M960 0v630M1056 0v630"/>
+  </g>
+  <g transform="translate(86 84)">
+    <rect x="0" y="76" width="104" height="24" rx="4" fill="#ececf1" opacity="0.86"/>
+    <rect x="16" y="40" width="72" height="24" rx="4" fill="#ececf1" opacity="0.56"/>
+    <rect x="32" y="4" width="40" height="24" rx="4" fill="#22d3ee"/>
+  </g>
+  <text x="86" y="270" fill="#ececf1" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="800">CommsDock</text>
+  <text x="90" y="350" fill="#b8b8c2" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="500">Telecom-first engineering practice</text>
+  <text x="90" y="410" fill="#22d3ee" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">Networks first. Software where it matters.</text>
+</svg>
