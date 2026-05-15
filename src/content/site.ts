@@ -20,7 +20,7 @@ export const navItems = [
 ] as const;
 
 export const proofPoints = [
-  { label: 'Established', value: '2014' },
+  { label: 'Company established', value: '2026' },
   { label: 'Voice platforms', value: 'PBX, CCaaS, UC' },
   { label: 'Infra', value: 'AWS, VLAN, WAN' },
   { label: 'AI stack', value: 'Voice-native' },

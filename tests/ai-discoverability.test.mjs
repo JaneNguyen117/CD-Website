@@ -232,6 +232,9 @@ describe('AI discoverability output', () => {
     for (const obsolete of ['RF planning', 'microwave backhaul', 'antenna', 'last-mile', 'carrier-grade network']) {
       assert.doesNotMatch(combined, new RegExp(obsolete, 'i'), `site output should not mention ${obsolete}`);
     }
+
+    assert.match(combined, /2026/, 'site output should include the company establishment year');
+    assert.doesNotMatch(combined, /\b2014\b/, 'site output should not claim the company was established in 2014');
   });
 
   test('sitemap includes primary pages and the note detail page', () => {

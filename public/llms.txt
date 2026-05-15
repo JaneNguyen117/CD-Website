@@ -8,7 +8,7 @@ CommsDock is the consulting practice of a voice telecommunications engineer who 
 
 - **Discipline:** Voice telecommunications engineering, PBX and contact centre architecture, AWS/cloud infrastructure, SMB network engineering, software development, voice AI integration.
 - **Mode:** Solo operator. The person you scope with is the person who delivers.
-- **Established:** 2014.
+- **Company established:** 2026.
 - **Specialty platforms:** NEC PBX, Panasonic PBX, Avaya IP Office, Avaya Contact Center, Webex, BroadWorks call centre, 3CX, Yeastar Cloud PBX.
 - **Infrastructure skills:** AWS EC2 on Ubuntu, AWS security groups, Amazon SES, static egress IP design, VLANs, Ubiquiti Wi-Fi and APs, DrayTek routers, TP-Link routers, WAN routing.
 - **Base:** Australia (AEST). Remote-first, with APAC and global delivery experience.
