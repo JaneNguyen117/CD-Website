@@ -5,13 +5,13 @@ import ContactOptions from '../components/ContactOptions.astro';
 import { aboutPageSchema } from '../utils/schema';
 
 const description =
-  'About CommsDock: a solo voice telecom engineering practice combining PBX, contact centre, collaboration, software, and voice AI delivery.';
+  'About CommsDock: a solo voice telecom engineering practice combining PBX, contact centre, cloud, network infrastructure, software, and voice AI delivery.';
 ---
 
 <BaseLayout title="About" description={description} schema={[aboutPageSchema('/about', 'About CommsDock', description)]}>
   <PageIntro
     label="About"
-    title="One engineer across the voice estate, the architecture, and the code."
+    title="One engineer across the voice estate, the infrastructure, and the code."
     summary="CommsDock is built around a simple operating model: the person who scopes the voice problem is the person who owns delivery."
   />
   <section class="container about-body">
@@ -19,6 +19,12 @@ const description =
       <h2>Voice telecom first</h2>
       <p>
         The practice starts from business voice systems: NEC PBX, Panasonic PBX, Avaya IP Office, Avaya Contact Center, Webex, BroadWorks call centre, 3CX, and Yeastar Cloud PBX.
+      </p>
+    </div>
+    <div>
+      <h2>Infrastructure aware</h2>
+      <p>
+        Voice work often depends on AWS instances, security groups, SES, static egress IPs, VLANs, Ubiquiti Wi-Fi, and router configuration across DrayTek, TP-Link, and similar SMB networks.
       </p>
     </div>
     <div>
@@ -40,7 +46,7 @@ const description =
 <style>
   .about-body {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     padding-bottom: 48px;
   }

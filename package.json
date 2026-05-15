@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Solo voice telecom engineering practice for PBX, contact centre, collaboration platforms, and voice AI systems.",
+  "description": "Solo voice telecom engineering practice for PBX, contact centre, cloud and network infrastructure, and voice AI systems.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

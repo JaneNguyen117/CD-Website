@@ -3,9 +3,9 @@ export const site = {
   url: 'https://commsdock.com',
   email: 'hello@commsdock.com',
   description:
-    'Voice telecom engineering practice for PBX, contact centre, collaboration platforms, and voice AI systems.',
+    'Voice telecom engineering practice for PBX, contact centre, cloud, network infrastructure, and voice AI systems.',
   positioning:
-    'Voice telecommunications specialist who designs, migrates, integrates, and automates business calling platforms.',
+    'Voice telecommunications specialist who designs, migrates, integrates, and automates business calling platforms and the cloud/network infrastructure around them.',
   availability: 'Accepting Q2 / Q3 2026 engagements',
   base: 'Australia',
   timezone: 'Australia/Sydney',
@@ -22,8 +22,8 @@ export const navItems = [
 export const proofPoints = [
   { label: 'Established', value: '2014' },
   { label: 'Voice platforms', value: 'PBX, CCaaS, UC' },
+  { label: 'Infra', value: 'AWS, VLAN, WAN' },
   { label: 'AI stack', value: 'Voice-native' },
-  { label: 'Mode', value: 'Solo operator' },
 ] as const;
 
 export const services = [
@@ -49,22 +49,26 @@ export const services = [
     ],
   },
   {
-    slug: 'voice-systems-architecture',
-    title: 'Voice systems architecture',
+    slug: 'voice-network-cloud-infrastructure',
+    title: 'Voice, network, and cloud infrastructure',
     summary:
-      'Architecture work for migrations, hybrid voice estates, SIP integrations, call centre operations, and collaboration platforms.',
+      'Infrastructure work around voice platforms: AWS-hosted services, SIP-ready networks, VLANs, Wi-Fi, routers, SES, and static egress IP patterns.',
     outcomes: [
-      'Clear target-state architecture and migration path',
-      'Practical coexistence plans across legacy PBX, cloud PBX, UC, and call centre platforms',
-      'Decision support for carrier, platform, endpoint, and vendor consolidation',
+      'Voice-ready LAN, WAN, Wi-Fi, and cloud foundations',
+      'Single public egress IP patterns for customers with multiple WAN links and allowlisted outbound connections',
+      'Practical migration and coexistence plans across legacy PBX, cloud PBX, UC, and call centre platforms',
     ],
     capabilities: [
-      'Cloud PBX migration',
+      'AWS EC2 on Ubuntu',
+      'AWS security groups',
+      'Amazon SES',
+      'Static egress IP design',
+      'VLAN design',
+      'Ubiquiti Wi-Fi and AP configuration',
+      'DrayTek router configuration',
+      'TP-Link router configuration',
       'SIP trunking and call flow design',
-      'IVR and queue architecture',
-      'Contact centre integration',
-      'Numbering and dial-plan design',
-      'Operational playbooks',
+      'Voice-ready LAN/WAN configuration',
     ],
   },
   {

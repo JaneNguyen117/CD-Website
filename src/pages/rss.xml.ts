@@ -5,7 +5,7 @@ import { notes } from '../content/notes';
 export function GET(context: APIContext) {
   return rss({
     title: 'CommsDock Notes',
-    description: 'Voice telecom engineering notes on PBX, contact centre architecture, software, and voice AI workflows.',
+    description: 'Voice telecom engineering notes on PBX, contact centre architecture, cloud and network infrastructure, software, and voice AI workflows.',
     site: context.site ?? 'https://commsdock.com',
     items: notes.map((note) => ({
       title: note.title,

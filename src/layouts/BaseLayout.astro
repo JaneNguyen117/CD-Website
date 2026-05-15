@@ -32,7 +32,7 @@ const title = Astro.props.title ?? frontmatter.title ?? siteName;
 const description =
   Astro.props.description ??
   frontmatter.description ??
-  'Voice telecom engineering practice for PBX, contact centre, collaboration platforms, and voice AI systems.';
+  'Voice telecom engineering practice for PBX, contact centre, cloud, network infrastructure, and voice AI systems.';
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://commsdock.com';
 const fullTitle = title === siteName ? `${siteName} - Voice telecom engineering practice` : `${title} - ${siteName}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
