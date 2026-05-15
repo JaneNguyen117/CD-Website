@@ -29,7 +29,7 @@ Practical LLM features inside business systems: retrieval, agentic workflows, ev
 
 ## How to engage
 
-- **Discovery call:** /contact - free 30-minute scoping conversation.
+- **Contact:** /contact - send the network context, constraints, and timeline; response within one business day.
 - **Engagement models:** Fractional (ongoing retainer), project (fixed scope), advisory (per-session).
 - **Response latency:** Within one business day.
 
