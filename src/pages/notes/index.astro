@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { webPageSchema } from '../../utils/schema';
+
+const description = 'Engineering notes from CommsDock on telecom networks, architecture, operational software, and practical AI workflows.';
+const notes = [
+  {
+    href: '/notes/field-to-api-telecom-software',
+    title: 'Field to API: why telecom software starts with the network reality',
+    description:
+      'Telecom software works better when it starts from field constraints, network topology, and operational handover.',
+    date: '2026-05-15',
+  },
+];
+---
+
+<BaseLayout title="Notes" description={description} schema={[webPageSchema('/notes', 'CommsDock Notes', description)]}>
+  <PageIntro
+    label="Notes"
+    title="Field notes on networks, architecture, and software."
+    summary="Short technical notes from the intersection of telecom delivery, systems architecture, and the software that keeps operations moving."
+  />
+  <section class="container notes-list">
+    {notes.map((note) => (
+      <article>
+        <time datetime={note.date}>{note.date}</time>
+        <h2><a href={note.href}>{note.title}</a></h2>
+        <p>{note.description}</p>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-list {
+    display: grid;
+    gap: 24px;
+    padding-bottom: 96px;
+  }
+  article {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+  time {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  p {
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+</style>
