@@ -3,6 +3,7 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { personSchema, professionalServiceSchema, websiteSchema } from '../utils/schema';
 
 interface Props {
   title: string;
@@ -10,57 +11,23 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   noIndex?: boolean;
+  schema?: Record<string, unknown>[];
 }
 
 const {
   title,
   description,
   canonical,
-  ogImage = '/og-default.png',
+  ogImage = '/og-default.svg',
   noIndex = false,
+  schema = [],
 } = Astro.props;
 
 const siteName = 'CommsDock';
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://commsdock.com';
-const fullTitle = title === siteName ? `${siteName} — Solo engineering practice` : `${title} — ${siteName}`;
+const fullTitle = title === siteName ? `${siteName} - Telecom-first engineering practice` : `${title} - ${siteName}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
-
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': `${siteUrl}/#person`,
-  name: 'CommsDock',
-  url: siteUrl,
-  jobTitle: 'Telecommunications Engineer · Solution Architect · Developer',
-  description: 'Solo engineering practice for telecom networks, systems architecture, and shipped software.',
-  knowsAbout: [
-    'Telecommunications engineering',
-    'RF planning',
-    'IP transport',
-    'Network architecture',
-    'Cloud architecture',
-    'Solution architecture',
-    'Software development',
-    'AI integration',
-  ],
-};
-
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': `${siteUrl}/#practice`,
-  name: 'CommsDock',
-  url: siteUrl,
-  description: 'Solo engineering practice for telecom networks, systems architecture, and shipped software. Serving SMB and tech-led startups.',
-  provider: { '@id': `${siteUrl}/#person` },
-  areaServed: 'Global (remote-first, APAC focus)',
-  serviceType: [
-    'Telecommunications engineering',
-    'Systems architecture',
-    'Software development',
-    'AI integration',
-  ],
-};
+const allSchema = [websiteSchema(), personSchema(), professionalServiceSchema(), ...schema];
 ---
 
 <!doctype html>
@@ -90,6 +57,7 @@ const serviceSchema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteUrl).toString()} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -99,9 +67,12 @@ const serviceSchema = {
       rel="stylesheet"
     />
 
-    <!-- Structured data: Person + ProfessionalService -->
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
-    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} is:inline />
+    <!-- Structured data -->
+    {
+      allSchema.map((schemaObject) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schemaObject)} is:inline />
+      ))
+    }
 
     <!-- Per-page head extras -->
     <slot name="head" />
