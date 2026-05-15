@@ -1,23 +1,58 @@
 ---
-import { engagementModels, site } from '../content/site';
+import { consultInputs, consultOutcomes, consultReasons, engagementModels, site } from '../content/site';
 ---
 
 <section class="contact-options container">
-  <div class="copy">
-    <h2>Start with the voice problem.</h2>
+  <div class="lead">
+    <p class="eyebrow">Consult intake</p>
+    <h2>Start with the system reality.</h2>
     <p>
-      Send the platform, call-flow, cloud, network, integration, and outcome context. CommsDock will respond within one business day with the right next step.
+      CommsDock is useful when the work needs voice telecom depth first, then the cloud, network, software, or AI layer around it. Bring the current estate, the delivery pressure, and the outcome you need.
     </p>
-    <a href={`mailto:${site.email}`} class="email">{site.email}</a>
+    <a href={`mailto:${site.email}`} class="email">Email {site.email}</a>
+  </div>
+
+  <div class="panel">
+    <div class="section-block">
+      <h3>Useful when</h3>
+      <ul>
+        {consultReasons.map((reason) => <li>{reason}</li>)}
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <h3>Send through</h3>
+      <ul>
+        {consultInputs.map((input) => <li>{input}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="engagements container">
+  <div class="section-heading">
+    <p class="eyebrow">Engagement paths</p>
+    <h2>Consult, project, fractional, or remote contractor support.</h2>
   </div>
   <div class="models">
-    {engagementModels.map((model) => (
+    {engagementModels.map((model, index) => (
       <article>
+        <span>{String(index + 1).padStart(2, '0')}</span>
         <h3>{model.title}</h3>
         <p>{model.summary}</p>
       </article>
     ))}
   </div>
+</section>
+
+<section class="after container">
+  <div>
+    <p class="eyebrow">After the first message</p>
+    <h2>Leave with a sharper next move.</h2>
+  </div>
+  <ul>
+    {consultOutcomes.map((outcome) => <li>{outcome}</li>)}
+  </ul>
 </section>
 
 <style>
@@ -27,13 +62,27 @@ import { engagementModels, site } from '../content/site';
     gap: 56px;
     padding-block: 56px 96px;
   }
+  .lead,
+  .section-heading,
+  .after > div {
+    min-width: 0;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
   h2 {
     font-family: var(--font-display);
     font-size: 36px;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
+    line-height: 1.05;
     margin-bottom: 14px;
   }
-  .copy p {
+  .lead p {
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 24px;
@@ -41,14 +90,64 @@ import { engagementModels, site } from '../content/site';
   .email {
     color: var(--accent);
     font-family: var(--font-mono);
+    font-size: 14px;
+  }
+  .panel {
+    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 34px;
+    padding-top: 24px;
+  }
+  .section-block h3,
+  .after h2 {
+    margin-bottom: 14px;
+  }
+  ul {
+    display: grid;
+    gap: 14px;
+    list-style: none;
+  }
+  li {
+    color: var(--text-2);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+  li::before {
+    background: var(--accent);
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 5px;
+  }
+  .engagements {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 56px;
+    padding-block: 64px;
   }
   .models {
     display: grid;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
   }
   article {
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
+    background: var(--bg);
+    min-height: 220px;
+    padding: 24px;
+  }
+  article span {
+    color: var(--text-dim);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    margin-bottom: 48px;
   }
   h3 {
     margin-bottom: 8px;
@@ -57,9 +156,33 @@ import { engagementModels, site } from '../content/site';
     color: var(--text-2);
     line-height: 1.6;
   }
+  .after {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    padding-block: 64px 112px;
+  }
   @media (max-width: 900px) {
-    .contact-options {
+    .contact-options,
+    .engagements,
+    .after {
       grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .models {
+      grid-template-columns: 1fr;
+    }
+    article {
+      min-height: auto;
+    }
+    article span {
+      margin-bottom: 28px;
+    }
+  }
+  @media (max-width: 560px) {
+    h2 {
+      font-size: 30px;
     }
   }
 </style>

@@ -1,8 +1,8 @@
 # CommsDock
 
-> Voice telecom engineering practice for PBX, contact centre, collaboration platforms, cloud and network infrastructure, and voice AI systems.
+> Voice telecom engineering practice for PBX, contact centre, collaboration platforms, cloud and network infrastructure, voice AI systems, and remote senior contractor support.
 
-CommsDock is the consulting practice of a voice telecommunications engineer who also works as a developer and solution architect. The practice helps teams design, modernise, and operate PBX, contact centre, and collaboration systems, then delivers the AWS, network, router, Wi-Fi, software, integration, and voice AI pieces needed to reduce delivery and operations friction.
+CommsDock is the consulting practice of a voice telecommunications engineer who also works as a developer and solution architect. The practice helps teams design, modernise, and operate PBX, contact centre, and collaboration systems, then delivers the AWS, network, router, Wi-Fi, software, integration, and voice AI pieces needed to reduce delivery and operations friction. CommsDock also provides remote senior contractor support for telco vendors, MSPs, integrators, and technical teams that need specific voice domain expertise.
 
 ## Practitioner
 
@@ -31,7 +31,7 @@ Voice-native AI workflows for call handling, retrieval, workflow automation, eva
 ## How to engage
 
 - **Contact:** /contact - send the platform, call-flow, infrastructure problem, constraints, and timeline; response within one business day.
-- **Engagement models:** Discovery (focused scoping), Project (fixed scope), Fractional (ongoing senior engineering capacity).
+- **Engagement models:** Discovery (focused scoping), Project (fixed scope), Fractional (ongoing senior engineering capacity), Remote contractor (specialist delivery support for vendors, MSPs, integrators, and technical teams).
 - **Response latency:** Within one business day.
 
 ## Important links

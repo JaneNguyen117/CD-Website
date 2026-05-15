@@ -225,6 +225,10 @@ describe('AI discoverability output', () => {
       'Ubiquiti',
       'DrayTek',
       'TP-Link',
+      'remote contractor',
+      'telco vendors',
+      'MSPs',
+      'integrators',
     ]) {
       assert.match(combined, new RegExp(expected.replaceAll(' ', '\\s+'), 'i'), `site output should mention ${expected}`);
     }
