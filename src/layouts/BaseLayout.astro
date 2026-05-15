@@ -3,7 +3,7 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { personSchema, professionalServiceSchema, websiteSchema } from '../utils/schema';
+import { articleSchema, personSchema, professionalServiceSchema, websiteSchema } from '../utils/schema';
 
 interface Props {
   title?: string;
@@ -15,6 +15,7 @@ interface Props {
   frontmatter?: {
     title?: string;
     description?: string;
+    pubDate?: string | Date;
   };
 }
 
@@ -35,7 +36,18 @@ const description =
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://commsdock.com';
 const fullTitle = title === siteName ? `${siteName} - Telecom-first engineering practice` : `${title} - ${siteName}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
-const allSchema = [websiteSchema(), personSchema(), professionalServiceSchema(), ...schema];
+const noteArticleSchema =
+  Astro.url.pathname.startsWith('/notes/') && frontmatter.title && frontmatter.description && frontmatter.pubDate
+    ? [
+        articleSchema({
+          pathname: Astro.url.pathname,
+          title: frontmatter.title,
+          description: frontmatter.description,
+          pubDate: frontmatter.pubDate,
+        }),
+      ]
+    : [];
+const allSchema = [websiteSchema(), personSchema(), professionalServiceSchema(), ...schema, ...noteArticleSchema];
 ---
 
 <!doctype html>

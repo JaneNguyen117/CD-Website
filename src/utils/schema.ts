@@ -1,6 +1,12 @@
 import { engagementModels, services, site } from '../content/site';
 
 type SchemaObject = Record<string, unknown>;
+type ArticleSchemaInput = {
+  pathname: string;
+  title: string;
+  description: string;
+  pubDate: string | Date;
+};
 
 export function personSchema(): SchemaObject {
   return {
@@ -66,15 +72,61 @@ export function serviceSchema(service: (typeof services)[number]): SchemaObject 
   };
 }
 
-export function webPageSchema(pathname: string, name: string, description: string): SchemaObject {
+function webpageFields(pathname: string, name: string, description: string): SchemaObject {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
     '@id': `${site.url}${pathname}#webpage`,
     url: `${site.url}${pathname}`,
     name,
     description,
     isPartOf: { '@id': `${site.url}/#website` },
+    provider: { '@id': `${site.url}/#practice` },
+  };
+}
+
+export function webPageSchema(pathname: string, name: string, description: string): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    ...webpageFields(pathname, name, description),
+  };
+}
+
+export function aboutPageSchema(pathname: string, name: string, description: string): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    ...webpageFields(pathname, name, description),
+  };
+}
+
+export function contactPageSchema(pathname: string, name: string, description: string): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    ...webpageFields(pathname, name, description),
+  };
+}
+
+export function articleSchema({
+  pathname,
+  title,
+  description,
+  pubDate,
+}: ArticleSchemaInput): SchemaObject {
+  const datePublished = pubDate instanceof Date ? pubDate.toISOString() : pubDate;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${site.url}${pathname}#article`,
+    url: `${site.url}${pathname}`,
+    headline: title,
+    name: title,
+    description,
+    datePublished,
+    author: { '@id': `${site.url}/#person` },
+    provider: { '@id': `${site.url}/#practice` },
+    mainEntityOfPage: { '@id': `${site.url}${pathname}#webpage` },
   };
 }
 

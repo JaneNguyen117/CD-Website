@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import ContactOptions from '../components/ContactOptions.astro';
-import { webPageSchema } from '../utils/schema';
+import { aboutPageSchema } from '../utils/schema';
 
 const description =
   'About CommsDock: a solo telecom-first engineering practice combining network engineering, solution architecture, and software delivery.';
 ---
 
-<BaseLayout title="About" description={description} schema={[webPageSchema('/about', 'About CommsDock', description)]}>
+<BaseLayout title="About" description={description} schema={[aboutPageSchema('/about', 'About CommsDock', description)]}>
   <PageIntro
     label="About"
     title="One engineer across the network, the architecture, and the code."

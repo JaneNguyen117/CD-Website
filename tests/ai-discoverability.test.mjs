@@ -66,6 +66,10 @@ function getJsonLdBlocks(html) {
   return blocks;
 }
 
+function getJsonLdTypes(html) {
+  return getJsonLdBlocks(html).map((block) => JSON.parse(block)['@type']);
+}
+
 function getMetaContent(html, attributeName, attributeValue) {
   const metaTags = html.match(/<meta\b[^>]*>/gi) ?? [];
 
@@ -144,6 +148,25 @@ describe('AI discoverability output', () => {
         assert.ok(data['@context'], `${route} JSON-LD should include @context`);
         assert.ok(data['@type'], `${route} JSON-LD should include @type`);
       }
+    }
+  });
+
+  test('key routes expose specific JSON-LD schema types', () => {
+    const expectedTypesByRoute = new Map([
+      ['/about', 'AboutPage'],
+      ['/contact', 'ContactPage'],
+      ['/notes/field-to-api-telecom-software', 'Article'],
+      ['/services', 'Service'],
+    ]);
+
+    for (const [route, expectedType] of expectedTypesByRoute) {
+      const html = readFileSync(fileForRoute(route), 'utf8');
+      const schemaTypes = getJsonLdTypes(html);
+
+      assert.ok(
+        schemaTypes.includes(expectedType),
+        `${route} should include ${expectedType} JSON-LD`,
+      );
     }
   });
 
