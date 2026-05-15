@@ -21,6 +21,30 @@ Dev server: http://localhost:4321
 | `npm run preview`  | Preview the production build locally   |
 | `npm run check`    | Astro type-check                       |
 
+## EC2 deployment
+
+The production EC2 host serves the static Astro build from `/var/www/commsdock`
+with Nginx.
+
+First-time server setup after cloning the repo:
+
+```bash
+cd ~/commsdock-site
+chmod +x scripts/deploy.sh
+sudo cp deploy/nginx/commsdock.conf /etc/nginx/sites-available/commsdock
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Deploy future updates from the server:
+
+```bash
+~/commsdock-site/scripts/deploy.sh
+```
+
+The Nginx config makes `https://commsdock.com` canonical and redirects
+`www.commsdock.com` to the root domain.
+
 ## Project shape
 
 ```
