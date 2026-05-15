@@ -7,8 +7,7 @@ const distDir = join(process.cwd(), 'dist');
 const siteOrigin = 'https://commsdock.com';
 
 const primaryRoutes = ['/', '/services', '/work', '/notes', '/about', '/contact'];
-const noteRoute = '/notes/field-to-api-telecom-software';
-const allRoutes = [...primaryRoutes, noteRoute];
+const htmlRoutes = [...primaryRoutes, '/notes/field-to-api-telecom-software'];
 const knownStaticPaths = new Set([
   '/favicon.svg',
   '/og-default.svg',
@@ -101,7 +100,7 @@ function assertKnownInternalHref(href, sourceRoute) {
   }
 
   const pathname = normalisePath(url.pathname);
-  const isKnownRoute = allRoutes.includes(pathname);
+  const isKnownRoute = htmlRoutes.includes(pathname);
   const isKnownAsset =
     knownStaticPaths.has(pathname) ||
     pathname.startsWith('/_astro/');
@@ -113,14 +112,14 @@ function assertKnownInternalHref(href, sourceRoute) {
 }
 
 describe('AI discoverability output', () => {
-  test('primary pages and note detail page exist in dist', () => {
-    for (const route of allRoutes) {
+  test('HTML routes exist in dist', () => {
+    for (const route of htmlRoutes) {
       assert.ok(existsSync(fileForRoute(route)), `${route} should emit an index.html file`);
     }
   });
 
-  test('primary page internal links resolve to shipped routes or assets', () => {
-    for (const route of primaryRoutes) {
+  test('HTML route internal links resolve to shipped routes or assets', () => {
+    for (const route of htmlRoutes) {
       const html = readFileSync(fileForRoute(route), 'utf8');
       const hrefs = getInternalHrefs(html);
 
@@ -132,8 +131,8 @@ describe('AI discoverability output', () => {
     }
   });
 
-  test('primary pages include parseable JSON-LD with context and type', () => {
-    for (const route of primaryRoutes) {
+  test('HTML routes include parseable JSON-LD with context and type', () => {
+    for (const route of htmlRoutes) {
       const html = readFileSync(fileForRoute(route), 'utf8');
       const jsonLdBlocks = getJsonLdBlocks(html);
 
@@ -148,12 +147,20 @@ describe('AI discoverability output', () => {
     }
   });
 
-  test('home page exposes OG and Twitter images for the default social image', () => {
-    const html = readFileSync(fileForRoute('/'), 'utf8');
+  test('HTML routes expose OG and Twitter images for the default social image', () => {
     const expectedImage = `${siteOrigin}/og-default.svg`;
 
-    assert.equal(getMetaContent(html, 'property', 'og:image'), expectedImage);
-    assert.equal(getMetaContent(html, 'name', 'twitter:image'), expectedImage);
+    for (const route of htmlRoutes) {
+      const html = readFileSync(fileForRoute(route), 'utf8');
+
+      assert.equal(getMetaContent(html, 'property', 'og:image'), expectedImage, `${route} should include og:image`);
+      assert.equal(
+        getMetaContent(html, 'name', 'twitter:image'),
+        expectedImage,
+        `${route} should include twitter:image`,
+      );
+    }
+
     assert.ok(existsSync(join(distDir, 'og-default.svg')), 'og-default.svg should exist in dist');
   });
 
@@ -179,7 +186,7 @@ describe('AI discoverability output', () => {
 
     assert.match(sitemapIndex, /https:\/\/commsdock\.com\/sitemap-0\.xml/);
 
-    for (const route of allRoutes) {
+    for (const route of htmlRoutes) {
       const url = route === '/' ? siteOrigin : `${siteOrigin}${route}`;
       assert.match(sitemap, new RegExp(`<loc>${url}\\/?<\\/loc>`), `sitemap should include ${url}`);
     }
