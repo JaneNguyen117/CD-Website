@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ServicePanel from '../components/ServicePanel.astro';
+import ContactOptions from '../components/ContactOptions.astro';
+import { services } from '../content/site';
+import { serviceSchema, webPageSchema } from '../utils/schema';
+
+const description =
+  'Telecom-first services from CommsDock: telecommunications engineering, network systems architecture, software for network operations, and practical AI workflows.';
+---
+
+<BaseLayout
+  title="Services"
+  description={description}
+  schema={[webPageSchema('/services', 'CommsDock Services', description), ...services.map(serviceSchema)]}
+>
+  <PageIntro
+    label="Services"
+    title="Telecom engineering first. Software where the network needs it."
+    summary="CommsDock helps teams design, modernise, and operate telecommunications systems, then builds the integrations and tools that remove delivery friction."
+  />
+  <section class="container services-list">
+    {services.map((service) => <ServicePanel {...service} />)}
+  </section>
+  <ContactOptions />
+</BaseLayout>
+
+<style>
+  .services-list {
+    padding-bottom: 32px;
+  }
+</style>

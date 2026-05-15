@@ -1,0 +1,43 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  summary: string;
+}
+
+const { label, title, summary } = Astro.props;
+---
+
+<section class="page-intro container">
+  {label && <p class="label">{label}</p>}
+  <h1>{title}</h1>
+  <p>{summary}</p>
+</section>
+
+<style>
+  .page-intro {
+    padding-block: 96px 56px;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  h1 {
+    max-width: 900px;
+    font-family: var(--font-display);
+    font-size: clamp(44px, 5.6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  p:last-child {
+    max-width: 760px;
+    color: var(--text-2);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+</style>

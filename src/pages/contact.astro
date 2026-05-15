@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContactOptions from '../components/ContactOptions.astro';
+import { site } from '../content/site';
+import { webPageSchema } from '../utils/schema';
+
+const description =
+  'Contact CommsDock for telecom engineering, network architecture, software integration, and AI-assisted engineering workflow engagements.';
+---
+
+<BaseLayout title="Contact" description={description} schema={[webPageSchema('/contact', 'Contact CommsDock', description)]}>
+  <PageIntro
+    label="Contact"
+    title="Bring the network context. Leave with a clearer next move."
+    summary={`Email ${site.email} with the problem, location, constraints, and timeline. CommsDock responds within one business day.`}
+  />
+  <ContactOptions />
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import ContactOptions from '../components/ContactOptions.astro';
+import { webPageSchema } from '../utils/schema';
+
+const description =
+  'Sanitised CommsDock work themes across telecom network delivery, architecture, software integration, and AI-assisted engineering workflows.';
+const examples = [
+  {
+    title: 'Network rollout recovery',
+    body: 'Clarified transport design, field constraints, and vendor responsibilities so a delayed network program could move from stalled decisions to buildable work packages.',
+  },
+  {
+    title: 'Operations tooling',
+    body: 'Built software that connected network, field, and business data so operational teams could reduce manual reconciliation and find delivery blockers earlier.',
+  },
+  {
+    title: 'Architecture due diligence',
+    body: 'Reviewed telecom and cloud architecture for delivery risk, integration complexity, observability gaps, and practical modernisation paths.',
+  },
+];
+---
+
+<BaseLayout title="Work" description={description} schema={[webPageSchema('/work', 'CommsDock Work', description)]}>
+  <PageIntro
+    label="Work"
+    title="Proof themes from telecom, architecture, and operational software."
+    summary="Client details stay confidential, but the work pattern is consistent: make the network reality clear, reduce delivery ambiguity, and build the tools needed to operate well."
+  />
+  <ProofStrip />
+  <section class="container examples">
+    {examples.map((example) => (
+      <article>
+        <h2>{example.title}</h2>
+        <p>{example.body}</p>
+      </article>
+    ))}
+  </section>
+  <ContactOptions />
+</BaseLayout>
+
+<style>
+  .examples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+  article {
+    border-top: 1px solid var(--border);
+    padding-top: 22px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 25px;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  p {
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  @media (max-width: 900px) {
+    .examples {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
