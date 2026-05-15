@@ -1,8 +1,8 @@
 # CommsDock
 
-> Solo engineering practice for telecom networks, systems architecture, and shipped software. Operated by one engineer, end-to-end — no vendor stack in between.
+> Telecom-first engineering practice for network architecture, field-to-cloud systems, and the software needed to operate them.
 
-CommsDock is the consulting practice of a telecommunications engineer who also works as a developer and solution architect. The practice serves small-to-medium businesses and technology-led startups who want fewer vendors and more delivery.
+CommsDock is the consulting practice of a telecommunications engineer who also works as a developer and solution architect. The practice helps teams design, modernise, and operate telecommunications systems, then builds the software, integrations, and AI-assisted workflows needed to reduce delivery and operations friction.
 
 ## Practitioner
 
@@ -25,23 +25,23 @@ Cloud and hybrid-edge designs, observability and SLO design, infrastructure as c
 Application development from API to runtime, integration work, internal tooling, technical due diligence, code review and modernisation.
 
 ### AI integration
-Practical LLM features inside business systems — retrieval, agentic workflows, evaluation harnesses, guardrails, cost and latency management.
+Practical LLM features inside business systems: retrieval, agentic workflows, evaluation harnesses, guardrails, cost and latency management.
 
 ## How to engage
 
-- **Discovery call:** /contact — free 30-minute scoping conversation.
+- **Discovery call:** /contact - free 30-minute scoping conversation.
 - **Engagement models:** Fractional (ongoing retainer), project (fixed scope), advisory (per-session).
 - **Response latency:** Within one business day.
 
 ## Important links
 
-- [Services](/services): Service breakdown with outcomes and tech.
-- [Work](/work): Sanitised case studies.
-- [Notes](/notes): Engineering notes, post-mortems, and field reports.
+- [Services](/services): Telecommunications engineering, network systems architecture, software for network operations, and AI-assisted engineering workflows.
+- [Work](/work): Sanitised proof themes and delivery patterns.
+- [Notes](/notes): Engineering notes, field reports, and architecture writing.
 - [About](/about): Background and how the practice operates.
-- [Contact](/contact): Booking form and direct email.
+- [Contact](/contact): Engagement options and direct email.
 
 ## Optional
 
-- [RSS feed](/rss.xml) — subscribe to engineering notes.
+- [RSS feed](/rss.xml): Subscribe to engineering notes.
 - [Sitemap](/sitemap-index.xml)
